@@ -8,6 +8,7 @@ Both files are python scripts originally designed to scrape data about whale sig
 ### system requirements
 You need the python library "requests" installed. 
 You can install requests by running "pip install requests" in your terminal. 
+(As shown here: https://pypi.org/project/requests/2.7.0/)
 If you do not have pip installed, you can download the latest python release, which comes with pip, here:
 https://www.python.org/downloads/
 
