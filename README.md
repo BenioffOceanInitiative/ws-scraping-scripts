@@ -17,3 +17,7 @@ https://www.python.org/downloads/
 #### Navigate to that directory in your local machine's terminal and run "python [FILE NAME OF SCRIPT]".
 #### Follow the user prompts, using your Conserve.io API documentation for guidance. 
 #### Any files you write will be saved to the same directory where your scripts are saved locally. 
+
+### tips
+#### A few of the Conserve.io APIs require a bounding box (BBOX) parameter. 
+#### Here is a website that helps you find exact longitude and latitude bounding box values: http://bboxfinder.com/
