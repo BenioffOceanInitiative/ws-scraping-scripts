@@ -1,0 +1,175 @@
+﻿Conserve.IO Whale Alert Web Data API
+
+
+Sightings Base End Point:
+https://maplify.com/waseak/php/search-all-sightings.php
+
+
+Required Parameters:
+* BBOX
+   * urlencoded west,south,east,north lat/lon values in decimal degrees
+   * ie. BBOX=-100,20,-80,25
+* start / end dates [default is 7 days if not included]
+   * start and end format 
+      * YYYY-MM-DD
+
+
+
+
+Optional Parameters:
+* moderated
+   * default = 1 (confirmed only, note that for now, all sightings are assumed confirmed unless a human moderator ‘deconfirms’ them)
+   * Allowed values, 1 or 0 
+      * 0 will show ONLY unconfirmed sightings 
+* limit
+   * default no limit
+   * otherwise integer # sets the max number of results 
+* q
+   * Loose match (mySQL Match function) of urlencoded text vs scientific name
+* species
+   * Hard match (=) scientific name         
+* start / end dates
+   * If no start and no end
+      * Returns prior 2 days
+   * start and end format 
+      * YYYY-MM-DD        
+* photos
+   * Only return sightings with attached photos (mostly opportunistic) 
+   * Allowed values = 1
+* in_ocean
+   * default is this filter is ignored
+   * allowed values 
+      * 0 = only sightings that failed check
+      * 1 = only sightings that passed check 
+* test        
+   * default = 0
+   * allowed values
+      * 0 - exclude any sighting where ‘test’ is in the comments
+      * 1 - return all sightings
+* count
+   * default is this filter is ignored
+   * allowed values 
+      * 0 = only sightings that failed check
+      * 1 = only sightings that passed check 
+* source
+   * default is this filter is ignored
+   * allowed values 
+      * whale_alert
+         * opportunistic whale alert sightings 
+      * ocean_alert
+         * opportunistic ocean alert sightings where species matches one in the species to scientific names table
+      * cinms 
+         * effort from Channel Islands
+
+
+Return Format - json
+
+
+count = total number of results
+results = array of individual sightings
+
+
+Foreach Sighting:
+id = Spotter Sighting ID
+trip_id = Spotter Trip ID 
+project_id = Spotter Project ID
+name = Common Species Name
+scientific_name = Scientific Name
+number_sighted = total number reported
+latitude = sighting latitude decimal degrees
+longitude = sighting longitude decimal degrees
+created = sighting datetime stamp
+photo_url = URL to attached photo (if any)
+comments = sighting comments
+in_ocean = ocean flag
+count_check = count check flag
+test_check = “test” in comments
+moderated = [0 = likely false hidden, 1 = confirmed, 2 = unconfirmed but showed]
+source = source of sighting
+________________
+
+
+Trip End Point:
+https://maplify.com/waseak/php/search-all-trips.php
+returns list of unique trip ID’s with one or more sightings within the specified date range
+
+
+Required Parameters:
+* start / end dates
+   * start and end format 
+      * YYYY-MM-DD
+* BBOX
+   * urlencoded west,south,east,north lat/lon values in decimal degrees
+   * ie. BBOX=-100,20,-80,25
+
+
+Optional Parameters:
+* limit
+   * default no limit
+   * otherwise integer # sets the max number of results         
+* source
+   * default - all effort sources *note CINMS is currently the only effort source
+
+
+Return Format - json
+
+
+count = total number of results
+results = array of individual sightings
+
+
+Foreach Trip:
+id = Spotter Trip ID
+project_id = Spotter Project ID
+source= Source Project Name (ie CINMS)
+sighting_count = total number of sightings in trip
+weather_count = total number of weather observations in trip
+created = earliest sighting in trip datetime stamp
+________________
+
+
+GPX Base End Point:
+https://maplify.com/waseak/php/get-gpx.php
+
+
+Required Parameters:
+* trip_id
+
+Return Format - GPX XML file name <trip_id>.gpx
+
+
+________________
+
+
+Weather Base End Point:
+https://maplify.com/waseak/php/get-weather.php
+
+
+Required Parameters:
+* trip_id
+
+Return Format - json
+
+
+Array of Weather Observations for the given trip (effort only):
+id = unique ID for weather observation 
+spotter_trip_id
+project_id
+created = observation timestamp
+cloud_cover = integer percentage 0 to 100
+beaufort_scale = integer 1 to 12
+swell = integer feet (?)
+visibility = integer nautical miles (?)
+
+
+
+
+
+
+
+
+
+
+Notes:
+* -999 is the default no data numerical value in Spotter
+* All dates & times in UTC
