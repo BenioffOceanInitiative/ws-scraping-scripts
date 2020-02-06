@@ -2,8 +2,11 @@
 ## Scripts for scraping whale-relevant data from external (non-BOI) APIs. 
 
 ### about this repo
-This repository contains two files: JSON 2 CSV_API Script and GPX_API Script. 
-<br/>Both files are python scripts originally designed to scrape data about whale sightings from APIs built by Conserve.io. <br/>The documentation from Conserve.io on using those APIs can be found here: https://docs.google.com/document/d/1NImy_RjCgwTyQYrwhryDnx6OqMVGfsHc5BU6Ftbu7ns/edit?ts=5dfaaaab
+The bread and butter of this repo are two files: JSON 2 CSV_API Script and GPX_API Script. 
+<br/>Both files are python scripts originally designed to scrape data about whale sightings from APIs built by Conserve.io. <br/>The documentation from Conserve.io on using those APIs is the file titled "Conserve.IO API Documentation.txt" 
+<br/> The documentation can also be found here: 
+https://docs.google.com/document/d/1NImy_RjCgwTyQYrwhryDnx6OqMVGfsHc5BU6Ftbu7ns/edit?ts=5dfaaaab
+
 
 ### system requirements
 You need the python library "requests" installed. 
