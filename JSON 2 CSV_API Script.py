@@ -138,9 +138,6 @@ def doConversion():
 	# Fetch the JSON data and convert to CSV.  
 	try: 
 		r_json = req.get(url, params=params_dict).json()
-		# r_json = req.get(url, params=params_dict).text
-		# print(r_json)
-		# r_json = json.loads(str(r_json))
 	except: 
 		if (params_dict == {}): print(bot.somethingFailed())
 		else: print(bot.paramsInvalid())
