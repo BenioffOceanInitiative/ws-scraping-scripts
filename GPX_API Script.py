@@ -17,7 +17,6 @@
 import sys
 import csv 
 import requests as req
-import gpxpy.gpx
 
 
 ### Defines messages shown to the user by the Chatbot. The
