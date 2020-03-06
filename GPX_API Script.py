@@ -5,7 +5,7 @@
 # This is a shorft Python script that extracts data from
 # a .php URL as a GPX file. 
 
-# The user of this script must input the URL and trip_id parameter 
+# The user of this script must input the URL and trip_id parameters 
 # of their choosing in the command line. 
 
 # This script was orginally written for scraping whale GPX data 
@@ -32,7 +32,7 @@ class Chatbot:
 	def paramsInvalid(self):
 		return "\nWHOOPS! The trip_id you entered is invalid."
 	def inputParam(self):
-		return "\nPlease enter a trip_id number:\n"
+		return "\nPlease enter a trip_id number below. If entering multiple, separate by a comma.\n"
 	def exit(self):
 		return "\nWould you like to exit? (Type \"y\" or \"n\".)\n\n"
 
@@ -61,21 +61,26 @@ def main():
 	
 	# Get trip_id parameter
 	trip_id = input(bot.inputParam()).strip()
-	p = {'trip_id':trip_id}
+	if ("," not in trip_id):
+		p = [trip_id]
+	else:
+		p = trip_id.split(",")
 
-	# Get relevant GPX data from API
-	try: 
-		r = req.get(url, params=p)
-	except: 
-		if (params_dict == {}): print(bot.somethingFailed())
-		else: print(bot.paramsInvalid())
-		exit()
+	for trip in p:
+		p = {'trip_id':trip}
+		# Get relevant GPX data from API
+		try: 
+			r = req.get(url, params=p)
+		except: 
+			if (params_dict == {}): print(bot.somethingFailed())
+			else: print(bot.paramsInvalid())
+			exit()
 
-	# Write the GPX file
-	s = trip_id + ".gpx"
-	f = open(s, 'wb')
-	f.write(r.content)
-	f.close()
+		# Write the GPX file
+		s = trip + ".gpx"
+		f = open(s, 'wb')
+		f.write(r.content)
+		f.close()
 
 
 
