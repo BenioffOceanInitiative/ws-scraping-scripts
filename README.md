@@ -18,6 +18,13 @@ https://www.python.org/downloads/
 ### running the scripts 
 Download the scripts individually into a specific directory or clone the repo into a local directory on your machine. 
 <br/>Navigate to that directory in your local machine's terminal and run "python [FILE NAME OF SCRIPT]".
+<br/>*Note: May need to include python3. Example:*
+<br/>
+```
+    cd /Users/morgan/github/ws-scraping-scripts
+    python3 GPX_API\ Script.py
+    python3 JSON\ 2\ CSV_API\ Script.py
+```
 <br/>Follow the user prompts, using your Conserve.io API documentation for guidance. 
 <br/>Any files you write will be saved to the same directory where your scripts are saved locally. 
 
